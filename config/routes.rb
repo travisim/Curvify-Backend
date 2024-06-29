@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  # root 'sessions#home'
+  resources :users, only: [:index,:create, :create, :show, :destroy, :update]
   namespace :api do
     namespace :v1 do
       get 'users/index'
       post 'users/create'
       get 'users/show/:id', to: 'users#show'
       delete 'users/destroy/:id', to: 'users#destroy'
+      put 'forum_thread/update/:id', to: 'forum_thread#update'
 
       get 'forum_thread/index'
       post 'forum_thread/create'

@@ -7,18 +7,23 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    puts "poiuytyuioiuyhgbhn"
-    puts params.inspect
+    puts "\npoiuytyuioiuyhgbhn"
+    puts user_params.inspect
     # testUser = User.save(user_params)
     # if testUser.errors[:username] == '["has already been taken"]'
     #   render json: { error: 'Username already taken' }
     # else
+     merged_params = user_params.merge({
+    password: params[:password],
+    password_confirmation: params[:password_confirmation]
+    })
+    @user = User.new(merged_params)
     
-    user = User.create!(user_params)
-    if user
-      render json: user
+    if @user.valid?
+      session[:user_id] = @user.id
+      render json: @user, status: :created
     else
-      render json: user.errors
+      render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -36,7 +41,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username)
+    params.require(:user).permit(:name,:username,:email, :password ,:password_confirmation)
   end
   def set_user
     @user = User.find(params[:id])
