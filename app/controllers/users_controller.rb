@@ -4,11 +4,18 @@ class UsersController < ApplicationController
     def index
     end
     def login
-        user = User.find_by(username: params[:username])
+        @user = User.find_by(username: params[:username])
 
-        if user && user.authenticate(params[:password])
-           token = encode({user_id: user.id})
-              render json: {user: user, token: token}
+        if @user && @user.authenticate(params[:password])
+             token = encode({ user_id: @user.id })
+            # Set the JWT in an HttpOnly cookie
+            cookies.signed[:jwt] = {
+                value: token,
+                httponly: true,
+                secure: Rails.env.production?, # Ensure secure flag is set in production
+                expires: 1.day.from_now
+            }
+              render json: {user: @user}
 
         else
 

@@ -26,14 +26,18 @@ class Api::V1::UsersController < ApplicationController
         secure: Rails.env.production?, # Ensure secure flag is set in production
         expires: 1.day.from_now
       }
-      render json: { user: @user, token: token }, status: :created
+      render json: { user: @user }, status: :created
     else
       puts @user.errors.full_messages.inspect
       render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
-  
+  def logout
+  # Clear the JWT cookie by setting its expiration to the past
+  cookies.delete(:jwt)
+  render json: { message: "Logged out successfully" }
+  end
 
   def show
     render json: @user
