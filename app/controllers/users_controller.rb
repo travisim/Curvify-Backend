@@ -7,8 +7,7 @@ class UsersController < ApplicationController
         user = User.find_by(username: params[:username])
 
         if user && user.authenticate(params[:password])
-           payload = {user_id: user.id}
-           token = encode(payload)
+           token = encode({user_id: user.id})
               render json: {user: user, token: token}
 
         else

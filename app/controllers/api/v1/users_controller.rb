@@ -7,25 +7,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-     existing_user_by_username = User.find_by(username: user_params[:username])
-    if existing_user_by_username
-      puts "user already exists"
-
-      render json: { error: 'Username already exists' } , status: :unprocessable_entity
-      return
-    end
-
-    existing_user_by_email = User.find_by(email: user_params[:email])
-    if existing_user_by_email
-      puts "email already exists"
-
-      render json: { error: 'Email already exists' } , status: :unprocessable_entity
-      return
-    end
-    # testUser = User.save(user_params)
-    # if testUser.errors[:username] == '["has already been taken"]'
-    #   render json: { error: 'Username already taken' }
-    # else
+   
+  
      merged_params = user_params.merge({
     password: params[:password],
     password_confirmation: params[:password_confirmation]
@@ -33,11 +16,19 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(merged_params)
     puts merged_params.inspect
     if @user.valid?
-      @user = User.create(merged_params)
-
+      @user.save
       session[:user_id] = @user.id
-      render json: @user, status: :created
+      token = encode({ user_id: @user.id })
+      # Set the JWT in an HttpOnly cookie
+      cookies.signed[:jwt] = {
+        value: token,
+        httponly: true,
+        secure: Rails.env.production?, # Ensure secure flag is set in production
+        expires: 1.day.from_now
+      }
+      render json: { user: @user, token: token }, status: :created
     else
+      puts @user.errors.full_messages.inspect
       render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
     end
   end
