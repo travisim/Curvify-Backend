@@ -45,9 +45,9 @@ end
   )
   10.times do |j|
     ForumThread.create(
-      title: ["Trade rooms (A23-P24)?","Trade Books","Trade Crypto (DOGE-SHIB)","Trade ipad for Airpods Max"].sample,
-      body: ["Trade with me pls","I'll add in 2 Avocurve coins"].sample,
-    category:["Barter","Buy with AvoCurve Coin","Off-Advice","Others"].sample,
+      title: ["ACC1701","CS2103T","BSP1702"].sample,
+      body: ["This course requires a Physical textbook for the finals","Notes are avaialble"].sample,
+    category:["Notes","Physical Textbook required"].sample,
     author: "Dean",
     user_id: 2
     )
@@ -56,7 +56,7 @@ end
   10.times do |j|
     ForumThreadComment.create(
       
-    body: ["PM","well could i offer my tutor services in exchange instead?"].sample,
+    body: ["i have just finished this course and would like to sell my physical textbook","I have quality notes"].sample,
       author: "Dean",
     forum_thread_id: Random.rand(10)+1,
     user_id: 2
