@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       post 'users/create'
       get 'users/show/:id', to: 'users#show'
       delete 'users/destroy/:id', to: 'users#destroy'
-      put 'forum_thread/update/:id', to: 'forum_thread#update'
+      put 'users/update/:id', to: 'users#update'
       post 'users/logout', to: 'users#logout'
       
 

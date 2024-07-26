@@ -13,7 +13,7 @@ class UsersController < ApplicationController
                 value: token,
                 httponly: true,
                 secure: Rails.env.production?, # Ensure secure flag is set in production
-                expires: 1.day.from_now
+                expires: 7.day.from_now
             }
               render json: {user: @user}
 

@@ -1,6 +1,6 @@
 class ForumThread < ApplicationRecord
 
-    allowed_categories = ["Barter", "Buy with AvoCurve Coin", "Off-Advice", "Other"]
+    allowed_categories = ["Trade", "Buy with AvoCurve Coin", "Donations", "Other"]
 
     validates :author, presence: true
    validates :title, presence: true

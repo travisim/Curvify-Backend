@@ -7,8 +7,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-   
-  
      merged_params = user_params.merge({
     password: params[:password],
     password_confirmation: params[:password_confirmation]
@@ -47,7 +45,13 @@ class Api::V1::UsersController < ApplicationController
     @user&.destroy
     render json: { message: 'Post deleted!' }
   end
-
+def update 
+    if @user.update(user_params)
+      render json:  { message: 'User Edited!' }
+    else
+      render nothing: true, status: :unprocessable_entity
+    end
+  end
   private
 
   def user_params

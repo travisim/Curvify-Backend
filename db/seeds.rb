@@ -9,16 +9,21 @@
 #   end
 1.times do |i|
   User.create(
-    
-   username: "Frank"
+    name:"Frank",
+   username: "Frank",
+   email: "frank@frank.com",
+    password: "password",
+    password_confirmation: "password",
+
+   
 
   
   )
   10.times do |j|
     ForumThread.create(
-      title: ["Trade rooms (A23-P24)?","Trade Books","Trade Crypto (DOGE-SHIB)","Trade ipad for Airpods Max"].sample,
-      body: ["Trade with me pls","I'll add in 2 Avocurve coins"].sample,
-    category:["Barter","Buy with AvoCurve Coin","Off-Advice","Others"].sample,
+      title: [" ","CS2103T","BSP1702"].sample,
+      body: ["This course requires a Physical textbook for the finals","Notes are avaialble"].sample,
+    category: ["Trade", "Buy with AvoCurve Coin", "Donations", "Other"].sample,
     author: "Frank",
     user_id: 1
     )
@@ -39,7 +44,11 @@ end
 1.times do |i|
   User.create(
     
-   username: "Dean"
+   name:"Dean",
+   username: "Dean",
+   email: "dean@dean.com",
+    password: "password",
+    password_confirmation: "password"
 
   
   )
@@ -47,7 +56,7 @@ end
     ForumThread.create(
       title: ["ACC1701","CS2103T","BSP1702"].sample,
       body: ["This course requires a Physical textbook for the finals","Notes are avaialble"].sample,
-    category:["Notes","Physical Textbook required"].sample,
+ category: ["Trade", "Buy with AvoCurve Coin", "Donations", "Other"].sample,
     author: "Dean",
     user_id: 2
     )
