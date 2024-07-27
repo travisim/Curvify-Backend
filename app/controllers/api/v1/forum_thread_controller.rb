@@ -1,6 +1,8 @@
 class Api::V1::ForumThreadController < ApplicationController
   before_action :set_forumThread, only: %i[show destroy update]
   before_action :get_forumThreadsByCategory, only: %i[showForumThreadsByCategory]
+  skip_before_action :authorized, only: [:index,:show,:showForumThreadsByCategory] 
+
   skip_before_action :verify_authenticity_token
 
   def index
@@ -13,11 +15,15 @@ class Api::V1::ForumThreadController < ApplicationController
   end
 
   def create
+
     forumThread = ForumThread.create!(forumThread_params)
     if forumThread
+      
       render json: forumThread
     else
+      
       render json: forumThread.errors
+
     end
   end
   def update 
@@ -40,7 +46,7 @@ class Api::V1::ForumThreadController < ApplicationController
   private
 
   def forumThread_params
-    params.require(:forum_thread).permit(:title, :body,:category,:user_id,:author)
+    params.require(:forum_thread).permit(:title, :body,:category,:user_id,:author).merge(user: current_user)
   end
   def set_forumThread
     @forumThread = ForumThread.find(params[:id])

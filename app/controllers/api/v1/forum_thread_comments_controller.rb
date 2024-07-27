@@ -2,6 +2,10 @@ class Api::V1::ForumThreadCommentsController < ApplicationController
     before_action :set_forumThreadComment, only: %i[show destroy update]
     before_action :get_commentsForCurrentThread, only: %i[showCommentsForThread]
     skip_before_action :verify_authenticity_token
+  skip_before_action :authorized, only: [:index,:show,:showCommentsForThread] 
+
+
+    skip_before_action :authorized, only: [:index,:show,:showCommentsForThread] 
     def index
       forumThreadComment = ForumThreadComment.all.order(created_at: :desc)
       render json: forumThreadComment 
@@ -12,6 +16,8 @@ class Api::V1::ForumThreadCommentsController < ApplicationController
     end
   
     def create
+
+
       forumThreadComment = ForumThreadComment.create!(forumThreadComment_params)
       if forumThreadComment
         render json: forumThreadComment
@@ -40,7 +46,7 @@ class Api::V1::ForumThreadCommentsController < ApplicationController
     private
   
     def forumThreadComment_params
-      params.require(:forum_thread_comment).permit( :body,:forum_thread_id, :user_id,:author)
+      params.require(:forum_thread_comment).permit( :body,:forum_thread_id, :user_id,:author).merge(user_id: current_user.id)
     end
      
    

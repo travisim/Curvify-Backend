@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       delete 'users/destroy/:id', to: 'users#destroy'
       put 'users/update/:id', to: 'users#update'
       post 'users/logout', to: 'users#logout'
+      get 'users/me', to: 'users#me'
       
+      post 'auth/login', to: 'auth#login'
 
       get 'forum_thread/index'
       post 'forum_thread/create'
