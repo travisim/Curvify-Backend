@@ -3,35 +3,36 @@
 #### Description:
 Backend for the curvify website  
 uses MUI  
-instructions to run locally below  
+works with frontend: github.com/travisim/Curvify-Frontend
 
-## warning 
-Developed and tested on macOS sonoma, login for cookies works on Chrome but not Safari  
+### Warning 
+Developed and tested on macOS sonoma  
+## Instructions
 
-### pre-requisites
+### Pre-requisites
 install ruby 3.3.1 with rbenv  
 (https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-macos)  
 install postgresql version 13  
 (brew install postgresql@13  
 brew services start postgresql@13)  
-### step 1  
-install rails
+### Step 1  
+Install rails
 ```
 sudo gem install rails
 ```
-### step 2  
-install bundles using bundler
+### Step 2  
+Install bundles using bundler
 ```
 bundle install
 ```
-### step 3
-configure database with seeded data
+### Step 3
+Configure database with seeded data
 
 ```
  rake db:drop db:create db:schema:load 
 ```
-### step 4 
-seed Db
+### Step 4 
+Seed Db
 ```
 rails db:seed
 ```
