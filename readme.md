@@ -1,19 +1,19 @@
 # Curvify backend
 
 #### Description:
-Backend for the curvify website
-uses MUI
-instructions to run locally below
+Backend for the curvify website  
+uses MUI  
+instructions to run locally below  
 
 ## warning 
-Developed and tested on macOS sonoma, login for cookies works on Chrome but not Safari
+Developed and tested on macOS sonoma, login for cookies works on Chrome but not Safari  
 
 ### pre-requisites
-install ruby 3.3.1 with rbenv
-(https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-macos)
-install postgresql version 13
-(brew install postgresql@13
-brew services start postgresql@13)
+install ruby 3.3.1 with rbenv  
+(https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-macos)  
+install postgresql version 13  
+(brew install postgresql@13  
+brew services start postgresql@13)  
 ### step 1  
 install rails
 ```
