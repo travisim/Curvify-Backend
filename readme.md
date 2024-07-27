@@ -1,16 +1,9 @@
-to run locally
-# README
-
-
 # Curvify backend
-
 
 #### Description:
 Backend for the curvify website
 uses MUI
-
-
-
+instructions to run locally below
 
 ## warning 
 Developed and tested on macOS sonoma, login for cookies works on Chrome but not Safari
