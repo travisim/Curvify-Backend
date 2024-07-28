@@ -60,6 +60,9 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'rails-erd' #bundle exec erd     
+      gem 'railroady' # rake diagram:all
+      gem  'xumlidot' # xumlidot -a -f pdf -o doc/architecture.pdf
   gem "web-console"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
