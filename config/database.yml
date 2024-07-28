@@ -13,20 +13,30 @@
 # gem "pg"
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  # host: <%= ENV.fetch("RAILS_DATABASE_HOST") { 'postgres' } %>
-  # username: <%= ENV.fetch("RAILS_DATABASE_USER") { 'postgres' } %>
-  # password: <%= ENV.fetch("RAILS_DATABASE_PASSWORD") { 'password' } %>
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
+    adapter: postgresql
+    encoding: unicode
+  # # host: <%= ENV.fetch("RAILS_DATABASE_HOST") { 'postgres' } %>
+  # # username: <%= ENV.fetch("RAILS_DATABASE_USER") { 'postgres' } %>
+  # # password: <%= ENV.fetch("RAILS_DATABASE_PASSWORD") { 'password' } %>
+  # # For details on connection pooling, see Rails configuration guide
+  # # https://guides.rubyonrails.org/configuring.html#database-pooling
+
   
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  
+    # adapter: postgresql  
+    # host: "aws-0-ap-southeast-1.pooler.supabase.com"                            # HOST 
+    # port: 6543         # Port  
+    # database: postgres              # Database Name  
+    # username: postgres.bbkpbwkfgtplvarsvvkd         # User Name  
+    # password: Minotauro`12@!~             # Password 
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   
 
 development:
   <<: *default
   database: curvify_development
+
+
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
