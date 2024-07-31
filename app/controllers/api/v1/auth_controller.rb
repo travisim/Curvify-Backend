@@ -5,6 +5,7 @@ class Api::V1::AuthController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+    skip_before_action :authorized, only: [:login]
 
     def login 
         @user = User.find_by!(username: login_params[:username])
@@ -15,8 +16,10 @@ class Api::V1::AuthController < ApplicationController
                 token: @token
             }, status: :accepted
         else
-        puts "user not found"
-            render json: {message: 'Incorrect password'}, status: :unauthorized
+    
+
+
+            render json: {error: "Invalid username or password"}
         end
 
     end
